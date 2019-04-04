@@ -1,0 +1,33 @@
+
+# node modules and debug log
+node_modules/
+**/npm-debug.log
+
+
+# visual studio files
+.vscode
+mobile-app-gateway.iml
+
+# intellij project files
+**/.idea
+
+# logs
+logs/*
+
+# redis files
+*.rdb
+
+# microservices, they are their own projects
+microservices/*
+
+# keep the microervices folder itself
+!microservices/.gitkeep
+
+#ignore the performance report data
+newrelic_agent.log
+
+
+#reporting
+coverage/*
+.nyc_output/*
+mochawesome-report/*

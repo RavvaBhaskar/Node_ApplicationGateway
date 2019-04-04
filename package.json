@@ -1,0 +1,61 @@
+{
+  "name": "gateway",
+  "version": "1.0.0",
+  "description": "Serves as a facade/gateway server coordinating access to microservices",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.3.0",
+    "bluebird": "^3.4.7",
+    "boom": "^4.3.0",
+    "chai": "^3.5.0",
+    "chairo": "^3.0.0",
+    "eslint": "^3.18.0",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "hapi": "^16.0.0",
+    "hapi-bunyan": "^0.6.0",
+    "inert": "^4.1.0",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.4",
+    "lodash.has": "^4.5.2",
+    "mocha": "^3.2.0",
+    "mochawesome": "^2.2.0",
+    "newrelic": "^1.40.0",
+    "node-fetch": "^1.6.3",
+    "nyc": "^10.1.2",
+    "path": "^0.12.7",
+    "pre-git": "^3.12.0",
+    "seneca": "^3.2.2",
+    "superagent": "^3.5.2",
+    "uscc-app-config": "git+ssh://git@ec2-52-43-33-150.us-west-2.compute.amazonaws.com:library/uscc-app-config.git",
+    "uscc-cache": "git+ssh://git@ec2-52-43-33-150.us-west-2.compute.amazonaws.com:library/uscc-cache.git",
+    "uscc-data-access": "git+ssh://git@ec2-52-43-33-150.us-west-2.compute.amazonaws.com:library/uscc-data-access.git",
+    "uscc-error": "git+ssh://git@ec2-52-43-33-150.us-west-2.compute.amazonaws.com:library/uscc-error.git",
+    "uscc-logging": "git+ssh://git@ec2-52-43-33-150.us-west-2.compute.amazonaws.com:library/uscc-logging.git",
+    "uscc-security": "git+ssh://git@ec2-52-43-33-150.us-west-2.compute.amazonaws.com:library/uscc-security.git",
+    "uscc-services": "git+ssh://git@ec2-52-43-33-150.us-west-2.compute.amazonaws.com:library/uscc-services.git"
+  },
+  "scripts": {
+    "test": "nyc --reporter=html mocha --reporter mochawesome",
+    "e2e": "./node_modules/mocha/bin/mocha --timeout 15000 --reporter mochawesome ./test/e2e/**.e2e-spec.js",
+    "start": "node server.js",
+    "reinstall": "rm -rf node_modules/uscc-* && npm install",
+    "linklibs": "rm -rf node_modules/uscc-* && cd node_modules && for i in $(ls ~/code/mobile-app/libraries | grep uscc); do ln -s ~/code/mobile-app/libraries/$i $i; done",
+    "SUS_linklibs": "rm -rf node_modules/uscc-* && cd node_modules && for i in $(ls ~/node/library | grep uscc); do ln -s ~/node/library/$i $i; done",
+    "commit": "commit-wizard"
+  },
+  "author": "",
+  "license": "ISC",
+  "config": {
+    "pre-git": {
+      "pre-commit": [],
+      "pre-push": [],
+      "post-commit": [],
+      "post-checkout": [],
+      "post-merge": []
+    }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
